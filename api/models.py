@@ -1,12 +1,27 @@
 from django.db import models
 
 class Script(models.Model):
-    body = models.TextField()
-    updated = models.DateField(auto_now=True)
-    created = models.DateField(auto_now_add=True)
+    name = models.CharField(max_length=20, default=None)
+    author_id = models.IntegerField(default=0)
+    body = models.TextField(default=None)
+    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.body[0:50]
+        return self.name
 
     class Meta:
-        ordering = ["-updated"]
+        ordering = ['-updated']
+
+class Template(models.Model):
+    name = models.CharField(max_length=20, default=None)
+    author_id = models.IntegerField(default=0)
+    body = models.JSONField(default=None)
+    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['-updated']
