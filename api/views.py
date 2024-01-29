@@ -20,7 +20,7 @@ from rest_framework.permissions import IsAuthenticated
 
 
 
-
+DOMAIN_NAME = "http://127.0.0.1:8000/"
 BASH_BEGINING = "#!/bin/bash\r\n\r\n"
 BASH_SPLITER = "\r\n\r\necho \"----------------------------------------------------------------\""
 
@@ -80,7 +80,7 @@ def getRouts(request):
         {
             "endpoint": "scripts/<id>/update/",
             "method" : "PUT",
-            "required": "name(str), body(str)",
+            "required": "name(str), body(str), color(str)",
             "description": "редактирование скрипта <id>",
             "auth": "обязательно"
         },
@@ -176,14 +176,19 @@ def getScript(request, pk):
 def createSkript(request):
     data = request.data
     user_id = request.user.id
+    
 
     serializer = ScriptSerializer(data=data)
     if serializer.is_valid():
         script = Script.objects.create(
             name=data["name"],
             author_id=user_id,
-            body=data["body"]
+            body=data["body"],
+            color=data["color"],
+            url = serializer.data
         )
+        # script = Script.objects.get(id=serializer.data.id)
+
         return Response(serializer.data)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -260,7 +265,7 @@ def createTemplate(request):
         template = Template.objects.create(
             name=data["name"],
             author_id=user_id,
-            body=data["body"]
+            body=data["body"],
         )
         serializer = TemplateSerializer(template, many=False)
         return Response(serializer.data)
