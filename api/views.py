@@ -184,12 +184,14 @@ def createSkript(request):
             name=data["name"],
             author_id=user_id,
             body=data["body"],
-            color=data["color"],
-            url = serializer.data
+            color=data["color"]
         )
-        # script = Script.objects.get(id=serializer.data.id)
+        
+        url = f"sudo wget -0 {script.name}.sh " + DOMAIN_NAME + f"scripts/{script.id}/raw && chmod +x {script.name}.sh && ./{script.name}.sh" 
+        script.url = url
+        script.save()
 
-        return Response(serializer.data)
+        return Response(ScriptSerializer(script).data)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # UPDATE SKRIPT
@@ -267,8 +269,11 @@ def createTemplate(request):
             author_id=user_id,
             body=data["body"],
         )
-        serializer = TemplateSerializer(template, many=False)
-        return Response(serializer.data)
+        url = f"sudo wget -0 {template.name}.sh " + DOMAIN_NAME + f"templates/{template.id}/raw && chmod +x {template.name}.sh && ./{template.name}.sh"
+        template.url = url
+        template.save()
+
+        return Response(ScriptSerializer(template).data)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # TEMPLATES UPDATE

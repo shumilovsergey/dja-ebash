@@ -7,7 +7,7 @@ class Script(models.Model):
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     color = models.CharField(max_length=20, default="0")
-    url = models.CharField(max_length=256, default=None)
+    url = models.CharField(max_length=256, default="None")
 
     def __str__(self):
         return self.name
@@ -21,7 +21,7 @@ class Template(models.Model):
     body = models.JSONField(default=None)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
-    url = models.CharField(max_length=256, default=None)
+    url = models.CharField(max_length=256, default="None")
 
     def __str__(self):
         return self.name
