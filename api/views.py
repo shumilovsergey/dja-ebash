@@ -7,10 +7,10 @@ from .models import Template
 from django.http import HttpResponse
 
 
-from ebash.serializers import UserSerializer
+# from ebash.serializers import UserSerializer
 from rest_framework import status
-from rest_framework.authtoken.models import Token
-from django.contrib.auth.models import User
+# from rest_framework.authtoken.models import Token
+# from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 
 # auth decors

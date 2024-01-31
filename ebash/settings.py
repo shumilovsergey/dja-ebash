@@ -19,7 +19,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'api.apps.ApiConfig',
-    # 'auth.apps.AuthConfig',
+    'user_profile.apps.UserProfileConfig',
+    'bot.app.BotConfig',
 ]
 
 MIDDLEWARE = [
@@ -90,5 +91,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # CORS_ALLOWED_ORIGINS = [""]
 CORS_ALLOWED_ALL_ORIGINS = True
 
-# settings.py
-AUTH_USER_MODEL = 'auth.CustomUser'
+
