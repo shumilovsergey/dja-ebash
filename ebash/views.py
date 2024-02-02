@@ -5,7 +5,10 @@ from rest_framework import status
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
+import random
+import requests
 
+from ebash.const import BOT_URL
 # auth decors
 from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
@@ -51,3 +54,20 @@ def test_token(request):
 def logout(request):
     request.auth.delete()
     return Response("logout for {}".format(request.user.username))
+
+@api_view(["GET"])
+def tg_login(request):
+    username = str(random.randint(1, 1000000))
+    password = str(random.randint(1, 1000000))
+
+    data = {
+        "username":username,
+        "password":password
+    }
+    serializer = UserSerializer(data=data)
+    if serializer.is_valid():
+        serializer.save()
+        serializer
+        user = User.objects.get(username=username)
+        token = Token.objects.create(user=user)
+    return Response(f"https://t.me/wget_bash_bot?start={token.key}")

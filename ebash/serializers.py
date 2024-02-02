@@ -6,4 +6,4 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ["id", "username", "password", "email"]
 
-    email = serializers.EmailField(required=True)
+    # email = serializers.EmailField(required=True)

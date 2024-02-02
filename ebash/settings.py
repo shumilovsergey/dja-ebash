@@ -5,8 +5,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-w-k^6wyx)xevp$)3iz4yxc223!lsugi7ho2z%y=dmxl3pktfno'
 
 DEBUG = True
-
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+APPEND_SLASH=False
+# ALLOWED_HOSTS = ["localhost", "127.0.0.1","f429-91-151-178-189.ngrok-free.app"]
+ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -20,7 +21,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'api.apps.ApiConfig',
     'user_profile.apps.UserProfileConfig',
-    'bot.app.BotConfig',
+    'bot.apps.BotConfig'
 ]
 
 MIDDLEWARE = [
