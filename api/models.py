@@ -1,4 +1,5 @@
 from django.db import models
+from ebash.const import COLORS
 
 class Script(models.Model):
     name = models.CharField(max_length=20, default=None)
@@ -6,7 +7,7 @@ class Script(models.Model):
     body = models.TextField(default=None)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
-    color = models.CharField(max_length=20, default="0")
+    color = models.IntegerField(choices=COLORS, default=0)
     url = models.CharField(max_length=256, default="None")
 
     def __str__(self):

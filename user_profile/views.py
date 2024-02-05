@@ -2,7 +2,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import Profile
 from django.http import HttpResponse
-
+from ebash.const import AVATARS
+from ebash.const import COLORS
 
 # from ebash.serializers import UserSerializer
 from rest_framework import status
@@ -38,3 +39,11 @@ def password(request):
 def logout(request):
     request.auth.delete()
     return Response("logout for {}".format(request.user.username))
+
+@api_view(["GET"])
+def getColors(request):
+    return Response({'available_colors': COLORS})
+
+@api_view(["GET"])
+def getAvatars(request):
+    return Response({'available_avatars': AVATARS})

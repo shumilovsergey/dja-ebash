@@ -7,21 +7,14 @@ ROUT_INFO = [
         "auth": "none"
     },
     {
-        "endpoint": "login/",
-        "method" : "POST",
-        "required": "username(str), password(str)",
-        "description": "логинимся тут",
+        "endpoint": "tg_login",
+        "method" : "GET",
+        "required": "none",
+        "description": "Отдает ссылку для ауторизации через телегу",
         "auth": "none"
     },
     {
-        "endpoint": "signup/",
-        "method" : "POST",
-        "required": "username(str), password(str), email(str)",
-        "description": "регаемся тут",
-        "auth": "none"
-    },
-    {
-        "endpoint": "logout/",
+        "endpoint": "tg_logout",
         "method" : "GET",
         "required": "none",
         "description": "отрицательно логинимся тут",
@@ -44,14 +37,14 @@ ROUT_INFO = [
     {
         "endpoint": "scripts/create/",
         "method" : "POST",
-        "required": "name(str), body(str)",
-        "description": "создание скрипта",
+        "required": "name(str), body(str) | не обязательное поле - color(int)",
+        "description": "не обязательный параметр - цвет. можно предложить на выбор из списка /profile/available_colors",
         "auth": "обязательно"
     },
     {
         "endpoint": "scripts/<id>/update/",
         "method" : "PUT",
-        "required": "name(str), body(str), color(str)",
+        "required": "name(str), body(str) | не обязательное поле - color(int)",
         "description": "редактирование скрипта <id>",
         "auth": "обязательно"
     },
@@ -111,11 +104,32 @@ ROUT_INFO = [
         "description": "вывод RAW шаблона <id>",
         "auth": "none"
     },   
-        {
+    {
         "endpoint": "templates/<id>/raw/",
         "method" : "GET",
         "required": "none",
         "description": "вывод RAW шаблона <id>",
         "auth": "none"
     },
+    {
+        "endpoint": "/profile/available_colors",
+        "method" : "GET",
+        "required": "none",
+        "description": "список пользовательских цветов",
+        "auth": "none"
+    },
+    {
+        "endpoint": "/profile/available_avatars",
+        "method" : "GET",
+        "required": "none",
+        "description": "список пользовательских аватаров",
+        "auth": "none"
+    },
+    {
+        "endpoint": "/profile/update",
+        "method" : "POST",
+        "required": "не обязательные поля profile_name (str), color(int), avatar(int)",
+        "description": "есть необязательные поля - color и avatar. список доступного содержимого для этих полей можно получить ендпоинтами выше",
+        "auth": " обязательно"
+    }
 ]
