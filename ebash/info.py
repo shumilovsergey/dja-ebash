@@ -131,5 +131,12 @@ ROUT_INFO = [
         "required": "не обязательные поля profile_name (str), color(int), avatar(int)",
         "description": "есть необязательные поля - color и avatar. список доступного содержимого для этих полей можно получить ендпоинтами выше",
         "auth": " обязательно"
+    },
+    {
+        "endpoint": "/profile",
+        "method" : "GET",
+        "required": "none",
+        "description": "отдает профиль пользовательских настроек",
+        "auth": " обязательно"
     }
 ]

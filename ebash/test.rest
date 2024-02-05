@@ -16,7 +16,7 @@ Content-Type: application/json
 
 GET http://127.0.0.1:8000/test_token
 Content-Type: application/json
-Authorization: Token 67d00197d68d8465278c3be07636ff813dd5bbc2
+Authorization: Token b0e51f5534ba19dcd5dafb63dedf0f26b1aadcf3
 
 {}
 
