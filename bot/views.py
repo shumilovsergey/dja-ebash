@@ -4,6 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
+from user_profile.models import Profile
 
 @api_view(['POST'])
 def getMessage(request):
@@ -33,6 +34,7 @@ def getMessage(request):
                 token = Token.objects.get(key=key)
                 old_user = token.user
                 token.user = user
+                profile = Profile.objects.get_or_create(user=user)
                 token.save()
                 old_user.delete()
             except:
@@ -42,6 +44,7 @@ def getMessage(request):
                 token = Token.objects.get(key=key)
                 user = token.user
                 user.username = chat_id
+                profile = Profile.objects.get_or_create(user=user)
                 user.save()
             except:
                 # BAD TOKEN BUT EXIST USER

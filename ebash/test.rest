@@ -14,9 +14,9 @@ Content-Type: application/json
 
 ###
 
-GET http://127.0.0.1:8000/test_token
+GET http://127.0.0.1:80/tg_logout
 Content-Type: application/json
-Authorization: Token b0e51f5534ba19dcd5dafb63dedf0f26b1aadcf3
+Authorization: Token f11c5f4d47922a3415ce98ac0c9017a1ac0862bc
 
 {}
 

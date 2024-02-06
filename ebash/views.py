@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404
 import random
 import requests
 
-from ebash.const import BOT_URL
+
 # auth decors
 from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
@@ -47,14 +47,6 @@ def signup(request):
 def test_token(request):
     return Response("pased for {}".format(request.user.username))
 
-
-@api_view(["GET"])
-@authentication_classes([SessionAuthentication, TokenAuthentication])
-@permission_classes([IsAuthenticated])
-def logout(request):
-    request.auth.delete()
-    return Response("logout for {}".format(request.user.username))
-
 @api_view(["GET"])
 def tg_login(request):
     username = str(random.randint(1, 1000000))
@@ -71,3 +63,11 @@ def tg_login(request):
         user = User.objects.get(username=username)
         token = Token.objects.create(user=user)
     return Response(f"https://t.me/wget_bash_bot?start={token.key}")
+
+
+@api_view(["GET"])
+@authentication_classes([SessionAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
+def tg_logout(request):
+    request.auth.delete()
+    return Response("logout for {}".format(request.user.username))
