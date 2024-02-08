@@ -1,7 +1,4 @@
 
-from .models import Message
-from rest_framework.serializers import ModelSerializer
-
 def telegram_format(request):
     r = flatten_json(request)
     e = False
@@ -81,7 +78,7 @@ def telegram_format(request):
     else:
         callback = None
 
-    json = {
+    message = {
         "chat_id":chat_id,
         "message_id":message_id,
         "username":username,
@@ -96,10 +93,10 @@ def telegram_format(request):
         "callback":callback
     }
 
-    serializer = MessageSerializer(instance=json)
+    if e:
+        message = None
 
-    return serializer
-
+    return message
 
 
 def flatten_json(json_obj, prefix=''):
@@ -113,7 +110,3 @@ def flatten_json(json_obj, prefix=''):
     return flat_json
 
 
-class MessageSerializer(ModelSerializer):
-    class Meta:
-        model = Message
-        fields = "__all__"
