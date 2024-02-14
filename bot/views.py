@@ -7,12 +7,15 @@ from rest_framework.authtoken.models import Token
 from user_profile.models import Profile
 from .serializers import telegram_format
 import json
+from dataclasses_serialization.json import JSONSerializer
 
 
 @api_view(['POST'])
 def getMessage(request):
     message = telegram_format(request.data)
-    if not message:
+
+    if message.error:
+        serializer = JSONSerializer.serialize(message)
         return Response("ok", status=200)
     
     if message["text"] and "/start" in message["text"] and len(message["text"]) > 8:

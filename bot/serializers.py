@@ -1,3 +1,4 @@
+from .models import Message
 
 def telegram_format(request):
     r = flatten_json(request)
@@ -10,7 +11,7 @@ def telegram_format(request):
         chat_id = str(r["callback_query.from.id"])
     else:
         chat_id = None
-        e = True
+
 
     if "message.message_id" in r:
         message_id = str(r["message.message_id"])
@@ -18,7 +19,7 @@ def telegram_format(request):
         message_id = str(r["callback_query.message.message_id"])
     else:
         message_id = None
-        e = True
+
 
     # USER META
     if "message.from.username" in r:
@@ -78,23 +79,35 @@ def telegram_format(request):
     else:
         callback = None
 
-    message = {
-        "chat_id":chat_id,
-        "message_id":message_id,
-        "username":username,
-        "last_name":last_name,
-        "first_name":first_name,
-        "text":text,
-        "photo":photo,
-        "voice": voice,
-        "video_note":video_note,
-        "video": video,
-        "document":document,
-        "callback":callback
-    }
+    
+    message = Message(
+        chat_id=chat_id,
+        message_id=message_id,
+        username=username,
+        last_name=last_name,
+        first_name=first_name,
+        text=text,
+        photo=photo,
+        voice=voice,
+        video=video,
+        document=document,
+        callback=callback
+    )
 
-    if e:
-        message = None
+    # message = {
+    #     "chat_id":chat_id,
+    #     "message_id":message_id,
+    #     "username":username,
+    #     "last_name":last_name,
+    #     "first_name":first_name,
+    #     "text":text,
+    #     "photo":photo,
+    #     "voice": voice,
+    #     "video_note":video_note,
+    #     "video": video,
+    #     "document":document,
+    #     "callback":callback
+    # }
 
     return message
 

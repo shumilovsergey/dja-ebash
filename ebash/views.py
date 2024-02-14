@@ -71,3 +71,4 @@ def tg_login(request):
 def tg_logout(request):
     request.auth.delete()
     return Response("logout for {}".format(request.user.username))
+

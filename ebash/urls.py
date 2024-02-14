@@ -19,4 +19,5 @@ urlpatterns = [
     re_path("test_token", views.test_token),
     re_path("tg_login", views.tg_login),
     re_path("tg_logout", views.tg_logout),
+
 ]
