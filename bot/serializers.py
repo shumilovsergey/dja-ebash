@@ -2,7 +2,6 @@ from .models import Message
 
 def telegram_format(request):
     r = flatten_json(request)
-    e = False
 
     # MAIN
     if "message.from.id" in r:
@@ -93,21 +92,6 @@ def telegram_format(request):
         document=document,
         callback=callback
     )
-
-    # message = {
-    #     "chat_id":chat_id,
-    #     "message_id":message_id,
-    #     "username":username,
-    #     "last_name":last_name,
-    #     "first_name":first_name,
-    #     "text":text,
-    #     "photo":photo,
-    #     "voice": voice,
-    #     "video_note":video_note,
-    #     "video": video,
-    #     "document":document,
-    #     "callback":callback
-    # }
 
     return message
 

@@ -30,3 +30,7 @@ Authorization: Token 67d00197d68d8465278c3be07636ff813dd5bbc2
 
 ###
 
+POST https://api.telegram.org/bot6765553972:AAGaoqoMWZ93C5wGHWe8gzmC-sIuYG6-F-Y/setWebhook
+Content-Type: application/json
+
+{"url": "https://0875-178-66-157-152.ngrok-free.app/bot/"}

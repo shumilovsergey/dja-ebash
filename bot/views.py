@@ -18,8 +18,12 @@ def getMessage(request):
         serializer = JSONSerializer.serialize(message)
         return Response("ok", status=200)
     
-    if message["text"] and "/start" in message["text"] and len(message["text"]) > 8:
+    if message.text and "/start" in message.text and len(message.text) > 8:
         tokenStart(message)
+
+    if message.text:
+        message.sendAudio()
+
     return Response("ok", status=200)
 
 
