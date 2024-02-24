@@ -5,10 +5,15 @@ ENV PYTHONUNBUFFERED 1
 
 WORKDIR /code
 
-COPY requirements.txt /code/
+RUN pip3 install --upgrade pip
 
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip3 install Django
+RUN pip3 install djangorestframework
+RUN pip3 install python-dotenv
+RUN pip3 install django-cors-headers
+RUN pip3 install requests
+RUN pip3 install dataclasses-serialization
+
 
 COPY . .
 
